@@ -1,0 +1,5 @@
+The example datasets presented under "tests" MUST NOT be relied upon!
+
+They were either created at an early stage in the NanoPUZZLES project (http://www.nanopuzzles.eu) - with the final versions having undergone revision - or are simply invented for the purposes of testing!
+
+In some cases, real datasets may have been edited (with no consideration of consistency with the original references) to test certain aspects of the code!

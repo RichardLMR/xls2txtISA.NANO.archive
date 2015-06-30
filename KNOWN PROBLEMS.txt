@@ -1,0 +1,7 @@
+29/10/14 (updated)
+Errors observed to date include the following:
+[1] Some numerical precision error beyond 2dp 
+[2] Integer IDs converted to floats.
+[3] PubMed ID [and other integers?] converted to "PubMed ID"+'non-ascii character extensions'!
+[4] TRUE/FALSE values converted to 1/0!!!
+
