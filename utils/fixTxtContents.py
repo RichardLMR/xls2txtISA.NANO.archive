@@ -53,7 +53,7 @@ fileType2literalFileContents2Replace['Assay']['Term Source Ref'] = 'Term Source 
 fileType2literalFileContents2Replace['Material']['QS[inherent]'] = 'QS(inherent)' #12/02/2015: quality score fields under revision within NanoPUZZLES; these columns are not included in the current,publicly released versions of the templates
 fileType2literalFileContents2Replace['Investigation']['Study Assay Measurement Term'] = 'Study Assay Measurement Type Term'
 #*******************
-allowed_duplicated_column_titles = ['Protocol REF','Term Accession Number','Term Source Ref','Term Source REF','Unit'] #should both 'Term Source Ref' and 'Term Source REF' be included? #see below!
+allowed_duplicated_column_titles = ['Protocol REF','Term Accession Number','Term Source Ref','Term Source REF','Unit','Sample Name'] #should both 'Term Source Ref' and 'Term Source REF' be included? #see below!
 allowed_duplicated_column_titles += ['"%s"' % title for title in allowed_duplicated_column_titles]
 del title
 duplicate_marker = '_duplicate_'
@@ -73,12 +73,12 @@ def findDuplicates(some_list):
 	
 	return duplicates
 
-def checkDuplicatedColumnTitlesAreAllowed(column_titles):
+def checkDuplicatedColumnTitlesAreAllowed(column_titles,allowed_dup_cts=allowed_duplicated_column_titles):
 	
 	duplicated_column_titles = findDuplicates(column_titles)
 	
 	if not 0 == len(duplicated_column_titles):
-		forbidden_duplicates = [ct for ct in duplicated_column_titles if not ct in allowed_duplicated_column_titles]
+		forbidden_duplicates = [ct for ct in duplicated_column_titles if not ct in allowed_dup_cts]
 		del ct
 		assert 0 == len(forbidden_duplicates), "Forbidden duplicates:%s" % str(forbidden_duplicates)
 		del forbidden_duplicates
@@ -302,7 +302,7 @@ def main():
 		if '-i' == o:
 			input = re.sub('"','',v)
 	
-	print 'Parsing: ', input
+	print 'Converting: ', input
 	
 	fixContents(input_file=input,out_name='output.txt')
 	

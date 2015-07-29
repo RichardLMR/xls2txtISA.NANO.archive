@@ -59,13 +59,24 @@ import unittest
 
 class test_1(unittest.TestCase):
 	
-	def clean_up_if_all_checks_passed(self,specific_files_not_to_delete):
-		all_files_to_delete = [file_name for file_name in glob.glob(r'%s%s*' % (delimiter().join(os.path.abspath(__file__).split(delimiter())[:-1]),delimiter())) if not re.search('(.\py$)',file_name) and not file_name in specific_files_not_to_delete]
+	def clean_up_if_all_checks_passed(self,specific_files_or_dirs_not_to_delete,current_test_dir=dir_of_the_current_test):
+		all_files_or_dirs_to_delete = [r'%s%s%s' % (current_test_dir,delimiter(),file_or_dir_name) for file_or_dir_name in os.listdir(current_test_dir) if not re.search('(.\py$)',file_or_dir_name) and not r'%s%s%s' % (current_test_dir,delimiter(),file_or_dir_name) in specific_files_or_dirs_not_to_delete]
 		
-		for FILE_TO_DELETE in all_files_to_delete:
-			os.remove(FILE_TO_DELETE)
-			assert not os.path.exists(FILE_TO_DELETE), " This still exists: \n %s" % FILE_TO_DELETE
-			print 'Removed this temporary file: ', FILE_TO_DELETE
+		for FILE_OR_DIR_TO_DELETE in all_files_or_dirs_to_delete:
+			if os.path.isfile(FILE_OR_DIR_TO_DELETE):
+				os.remove(FILE_OR_DIR_TO_DELETE)
+				assert not os.path.exists(FILE_OR_DIR_TO_DELETE), " This still exists: \n %s" % FILE_OR_DIR_TO_DELETE
+				print 'Removed this temporary file: ', FILE_OR_DIR_TO_DELETE
+			else:
+				assert os.path.isdir(FILE_OR_DIR_TO_DELETE), "FILE_OR_DIR_TO_DELETE=%s; not a directory or a file???" % FILE_OR_DIR_TO_DELETE
+				cwd = os.getcwd()
+				os.chdir(FILE_OR_DIR_TO_DELETE)
+				for file in glob.glob('*'):
+					os.remove(file)
+				del file
+				os.chdir(cwd)
+				del cwd
+				os.rmdir(FILE_OR_DIR_TO_DELETE) #this will only work on an empty directory!
 	
 	def compareOriginalAndNewFiles(self,orig_file,new_file):
 		
@@ -75,7 +86,7 @@ class test_1(unittest.TestCase):
 		print 'to:'
 		print new_file
 		print '-'*50
-		
+		assert not orig_file == new_file,"orig_file=%s;there is no point comparing it to itself!" % orig_file
 		file2Contents = {}
 		
 		for file_name in [orig_file,new_file]:
@@ -100,7 +111,7 @@ class test_1(unittest.TestCase):
 			self.compareOriginalAndNewFiles(orig_file,new_file)
 		
 		files_not_to_delete = all_input_files+all_orig_output_files_to_be_compared_as_required_for_unittesting
-		self.clean_up_if_all_checks_passed(specific_files_not_to_delete=files_not_to_delete)
+		self.clean_up_if_all_checks_passed(specific_files_or_dirs_not_to_delete=files_not_to_delete)
 	
 	def test_changeXls2txt(self):
 		##############################

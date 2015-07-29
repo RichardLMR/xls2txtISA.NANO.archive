@@ -1,5 +1,5 @@
 #########################################################################################################
-# test_12.py
+# test_8.py
 # Implements unit tests This file was adapted from test_1.py obtained from version 0.1 of the following project:http://code.google.com/p/generic-qsar-py-utils/
 # Copyright (c) 2013 Syngenta
 # Copyright (c) 2015 Liverpool John Moores University
@@ -58,49 +58,37 @@ import unittest
 #************************
 sys.path.append(r'%s%stests%stest_1' % (project_modules_to_test_dir,delimiter(),delimiter()))
 from test_1 import test_1
-example_input = '%s%sTOY.test_11.zip' % (dir_of_the_current_test,delimiter())
-example_output_to_compare_to = glob.glob(r'%s%s* - Copy.txt' % (dir_of_the_current_test,delimiter()))
-expected_no_output_files = 8
-assert expected_no_output_files == len(example_output_to_compare_to)
-assert expected_no_output_files == len([file for file in example_output_to_compare_to if os.path.exists(file)]), "%s???" % str(example_output_to_compare_to)
-del file
 
-class test_12(test_1):
+
+class test_8(test_1):
 	
-	def test_convertTOYtest11_removeComments(self):
+	def test_AtLeastOneInvestigationStudyAssayMaterialRequired_defaultOptions(self):
 		##############################
 		print 'Running unittests for this project: ', project_name
 		print 'Running this unittest: ', self._testMethodName
 		##############################
 		
-		##########################
-		#IMPORTANT: TOY.test_11.zip JUST COPIED FROM test_11 WITHOUT EDITING; EXPECTED OUTPUT [* - Copy.txt] ALSO COPIED, BUT MANUALLY EDITED [WITHOUT CHANGING FILE NAMES!] IN ACCORDANCE WITH EXPECTED CHANGES NOW THAT "-c" FLAG IS BEING USED!
-		#########################
+		non_problem_inputs = ["TOY.test_11.zip","TOY.test_11-two.Sample.Name.Cols.zip"]
+		non_problem_inputs = [r'%s%s%s' % (dir_of_the_current_test,delimiter(),file) for file in non_problem_inputs]
+		del file
+		problem_inputs = ["TOY.test_11-dup.Factors.zip"]
+		problem_inputs = [r'%s%s%s' % (dir_of_the_current_test,delimiter(),file) for file in problem_inputs]
+		del file
 		
+		for input in non_problem_inputs+problem_inputs:
+			cmd = r'python "%s%sxls2txtISA.NANO.archive.py" -i "%s"' % (project_modules_to_test_dir,delimiter(),input)
+			
+			if not input in problem_inputs:
+				assert input in non_problem_inputs,"input=%s???" % input
+				assert 0 == os.system(cmd)
+			else:
+				assert input in problem_inputs,"input=%s???" % input
+				assert not 0 == os.system(cmd)
+			del cmd
+		del input
 		
-		
-		cmd = r'python "%s%sxls2txtISA.NANO.archive.py" -i "%s" -c' % (project_modules_to_test_dir,delimiter(),example_input)
-		
-		assert 0 == os.system(cmd)
-		
-		instOfzipUtils = zipUtils(delimiter_value=delimiter())
-		
-		sub_folder_count = instOfzipUtils.archive2folder(re.sub('(\.zip$)','-txt_opt-c.zip',example_input))
-		
-		cwd = os.getcwd()
-		
-		os.chdir(re.sub('(\.zip$)','-txt_opt-c',example_input))
-		comparisons_count = 0
-		for orig_file in example_output_to_compare_to:
-			new_file = r'%s%s%s' % (os.getcwd(),delimiter(),re.sub('( - Copy\.txt)','.txt',orig_file.split(delimiter())[-1]))
-			self.compareOriginalAndNewFiles(orig_file,new_file)
-			os.remove(new_file)
-			comparisons_count += 1
-		assert expected_no_output_files == comparisons_count, "comparisons_count=%d;expected_no_output_files=%d" % (comparisons_count,expected_no_output_files)
-		os.chdir(cwd)
-		
-		os.remove(re.sub('(\.zip$)','-txt_opt-c.zip',example_input))
-		os.rmdir(re.sub('(\.zip$)','-txt_opt-c',example_input))
+		self.clean_up_if_all_checks_passed(specific_files_or_dirs_not_to_delete=non_problem_inputs+problem_inputs,current_test_dir=dir_of_the_current_test)
+
 
 
 
