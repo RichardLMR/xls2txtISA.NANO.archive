@@ -221,7 +221,7 @@ def main():
 		print __doc__
 		sys.exit(1)
 	
-	print 'Parsing:', xls_archive
+	print 'Converting:', xls_archive
 	
 	xls_folder = extractXlsFolder(xls_archive)
 	
@@ -231,7 +231,7 @@ def main():
 	
 	cleanUp([xls_folder])
 	
-	print xls_archive, " PARSED SUCCESSFULLY"
+	print xls_archive, " CONVERTED SUCCESSFULLY"
 	print '-'*50
 	
 	return 0
