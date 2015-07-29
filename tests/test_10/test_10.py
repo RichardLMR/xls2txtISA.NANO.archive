@@ -78,21 +78,7 @@ class test_10_for_checking_specific_fixTxtContents_functions(test_1):
 		assert "http://purl.bioontology.org/ontology/MDR/10069178" == fixTxtContents.extractAccessionCode(toy_example_1),"extractAccessionCode(toy_example_1)=%s" % fixTxtContents.extractAccessionCode(toy_example_1)
 		assert "http://purl.org/obo/owl/UO#UO_0000018" == fixTxtContents.extractAccessionCode(toy_example_2),"extractAccessionCode(toy_example_2)=%s" % fixTxtContents.extractAccessionCode(toy_example_2)
 	
-	def test_fixTxtContents_editAccessionCodesForOneSingleCellEntry_function(self):
-		##############################
-		print 'Running unittests for this project: ', project_name
-		print 'Running this unittest: ', self._testMethodName
-		##############################
-		
-		assert "Characteristics [shape {NPO:NPO_274}]" == fixTxtContents.editAccessionCodesForOneSingleCellEntry(the_entry="Characteristics [shape {NPO:http://purl.bioontology.org/ontology/npo#NPO_274}]")
-		
-		assert "NPO_199 ; NPO_1540" == fixTxtContents.editAccessionCodesForOneSingleCellEntry(the_entry="http://purl.bioontology.org/ontology/npo#NPO_199 ; http://purl.bioontology.org/ontology/npo#NPO_1540")
-		
-		assert "Characteristics[Product impurities found {MEDDRA:10069178}]" == fixTxtContents.editAccessionCodesForOneSingleCellEntry(the_entry="Characteristics[Product impurities found {MEDDRA:http://purl.bioontology.org/ontology/MDR/10069178}]")
-		
-		assert "UO_0000018" == fixTxtContents.editAccessionCodesForOneSingleCellEntry(the_entry="http://purl.org/obo/owl/UO#UO_0000018")
-	
-	def test_fixTxtContents_findDuplicates_function(self):
+	def test_fixTxtContents_checkDuplicatedColumnTitlesAreAllowed_function(self):
 		##############################
 		print 'Running unittests for this project: ', project_name
 		print 'Running this unittest: ', self._testMethodName
@@ -101,23 +87,7 @@ class test_10_for_checking_specific_fixTxtContents_functions(test_1):
 		assert [] == fixTxtContents.findDuplicates(['x','y','z'])
 		assert ['y'] == fixTxtContents.findDuplicates(['x','y','z','y'])
 	
-	def test_fixTxtContents_checkDuplicatedColumnTitlesAreAllowed_function(self):
-		##############################
-		print 'Running unittests for this project: ', project_name
-		print 'Running this unittest: ', self._testMethodName
-		##############################
-		
-		fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','y','z'],allowed_dup_cts=['z'])
-		
-		fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','z'],allowed_dup_cts=['z'])
-		
-		try:
-			fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','y','z'],allowed_dup_cts=['z'])
-			assert 1 == 2,"fixTxtContents.checkDuplicatedColumnTitlesAreAllowed should have failed:fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','y','z'],allowed_dup_cts=['z'])"
-		except AssertionError:
-			pass
-	
-	def test_fixTxtContents_modifyColTitleOrContentItem_function(self):
+	def test_modifyColTitleOrContentItem_function(self):
 		##############################
 		print 'Running unittests for this project: ', project_name
 		print 'Running this unittest: ', self._testMethodName
@@ -130,12 +100,12 @@ class test_10_for_checking_specific_fixTxtContents_functions(test_1):
 		expectedInput2Output['Parameter Value[Instrument]'] = 'Parameter Value [Instrument]'
 		expectedInput2Output['Measurement Value[z-average(hydrodynamic diameter)]'] = 'Measurement Value [z-average(hydrodynamic diameter)]'
 		expectedInput2Output['Characteristics[strain {EFO:    http://www.ebi.ac.uk/efo/EFO_0005135}]'] = 'Characteristics [strain {EFO:http://www.ebi.ac.uk/efo/EFO_0005135}]'
-		expectedInput2Output['Comment[Miscellaneous]'] = 'Comment [Miscellaneous]'
-		expectedInput2Output['Characteristics [Product impurities found {MEDDRA:\r\nhttp://purl.bioontology.org/ontology/MDR/10069178}]'] = 'Characteristics [Product impurities found {MEDDRA:http://purl.bioontology.org/ontology/MDR/10069178}]'
+		expectedInput2Output['Comment[Miscellaneous.1]'] = 'Comment [Miscellaneous.1]'
+		
 		#=============================
 		
 		for input in expectedInput2Output:
-			assert expectedInput2Output[input] == fixTxtContents.modifyColTitleOrContentItem(input), "%s input gave %s when converted via fixTxtContents.modifyColTitleOrContentItem???" % (input,fixTxtContents.modifyColTitleOrContentItem(input))
+			assert expectedInput2Output[input] == fixTxtContents.modifyColTitleOrContentItem(input), "%s input gave %s when parsed via fixTxtContents.modifyColTitleOrContentItem???" % (input,fixTxtContents.modifyColTitleOrContentItem(input))
 
 
 
