@@ -154,6 +154,17 @@ def getRows(tab_delimited_text_file):
 	
 	return rows
 
+def rowHasBlankFirstEntry(row):
+	#No valid Investigation, Study, Assay, Material file has a blank entry in the first column
+	#This enables blank rows to be deleted
+	##############
+	assert type([]) == type(row)
+	##############
+	if "" == row[0]:
+		return True
+	else:
+		return False
+
 def fixContents_step2(intermediate_1,out_name,file_type):
 	
 	f_out = open(out_name,'wb')
@@ -161,6 +172,11 @@ def fixContents_step2(intermediate_1,out_name,file_type):
 		row_count = 0
 		for row in getRows(intermediate_1):
 			row_count += 1
+			#================
+			if rowHasBlankFirstEntry(row):
+				assert not 1 == row_count, "Blank column title in %s (file type:%s)!" % (out_name,file_type)
+				continue
+			#================
 			#================
 			if 1 == row_count and not 'Investigation'==file_type:
 				checkDuplicatedColumnTitlesAreAllowed(column_titles=row)

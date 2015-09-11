@@ -1,30 +1,3 @@
 Source Name	Material Type	Term Accession Number	Term Source REF	Characteristics [cell type {EFO:EFO_0000324}]	Term Accession Number	Term Source REF	Characteristics [cell line {EFO:EFO_0000322}]	Term Accession Number	Term Source REF	Characteristics [organism {EFO:OBI_0100026}]	Term Accession Number	Term Source REF	Characteristics [strain {EFO:EFO_0005135}]	Term Accession Number	Term Source REF	Protocol REF	Protocol REF	Sample Name	Factor Value [culture medium]	Term Accession Number	Term Source REF	Factor Value [culture medium glucose supplement]	Factor Value [initial cell density]	Unit	Term Accession Number	Term Source REF	Factor Value [final cell density]	Unit	Term Accession Number	Term Source REF	Factor Value [confluent]	Factor Value [growth phase culture]	Term Accession Number	Term Source REF	Factor Value [Cell Count]	Unit	Term Accession Number	Term Source REF	Factor Value [nanomaterial]	Factor Value [screening concentration]	Unit	Term Accession Number	Term Source REF	Factor Value [dose per cell]	Unit	Term Accession Number	Term Source REF	Factor Value [dose]	Unit	Term Accession Number	Term Source REF	Factor Value [vehicle]	Term Accession Number	Term Source REF	Factor Value [vehicle volume]	Unit	Term Accession Number	Term Source REF	Factor Value [vehicle serum]	Term Accession Number	Term Source REF	Factor Value [vehicle serum concentration]	Unit	Term Accession Number	Term Source REF	Factor Value [vehicle serum heat treatment]	Factor Value [vehicle serum organism]	Term Accession Number	Term Source REF	Factor Value [cells Exposure Duration]	Unit	Term Accession Number	Term Source REF	Factor Value [light source]	Factor Value [artificial light wavelength classification]	Factor Value [artificial light wavelength]	Unit	Term Accession Number	Term Source REF	Factor Value [vehicle Exposure Duration]	Unit	Term Accession Number	Term Source REF	Factor Value [vehicle pH value]	Factor Value [vehicle temperature value]	Unit	Term Accession Number	Term Source REF	Factor Value [Sonication]	Factor Value [Sonication Strength]	Unit	Term Accession Number	Term Source REF	Factor Value [Sonication Duration]	Unit	Term Accession Number	Term Source REF	Factor Value [Stirring]	Factor Value [vortex shaking]	Factor Value [dispersant aid]	Term Accession Number	Term Source REF	Factor Value [dispersant aid concentration]	Unit	Term Accession Number	Term Source REF	Comment [miscellaneous]
 cells_1	biological specimen	NPO_1998	NPO	lung cells			N/A									nanomaterial sample component preparation for some cell based in vitro assay	biological sample component preparation for some cell based in vitro assay	s_TOY.test_11_InVitro.CB_1																					TiO2_TOY.test_11																																			background only (default)	N/A																																
 cells_1	biological specimen	NPO_1998	NPO	lung cells			N/A									nanomaterial sample component preparation for some cell based in vitro assay	biological sample component preparation for some cell based in vitro assay	s_TOY.test_11_InVitro.CB_2																					TiO2_TOY.test_11																																			background only (default)	N/A																																
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
-																																																																																																											
