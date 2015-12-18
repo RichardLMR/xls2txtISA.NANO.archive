@@ -1,0 +1,2 @@
+Image ID	Reference URI	Image Name	Permission Obtained for Reuse	Comment
+1.0	http://www.iamaldomadeup.org.uk	Made up image of TiO2 (silica coated with surface ligands) NM	N	This does not refer to a real image!

@@ -70,6 +70,8 @@ Options:
 
 -c : remove all "Comment" rows from the Investigation file. Some ISA-TAB-Nano software programs may not accept these rows.
 
+-N: edit certain fields (or field entries) to be consistent with the latest version of the NanoPUZZLES ISA-TAB-Nano Excel templates
+
 '''
 ###########################
 #######Imports#############
@@ -135,7 +137,7 @@ def idInputFiles(xls_folder):
 
 
 
-def createAllTxt(xls_folder,mustEditAccessionCodes,mustRemoveComments):
+def createAllTxt(xls_folder,mustEditAccessionCodes,mustRemoveComments,mustMakeNanoPUZZLESspecificChanges):
 	
 	abs_name_input_files = idInputFiles(xls_folder)
 	
@@ -153,10 +155,10 @@ def createAllTxt(xls_folder,mustEditAccessionCodes,mustRemoveComments):
 			current_file_type = 'NonStandard'
 		del applicable_standard_file_types
 		
-		fixContents(input_file=txt_file,out_name=None,del_intermediates=True,file_type=current_file_type,shouldEditAccessionCodes=mustEditAccessionCodes,shouldRemoveComments=mustRemoveComments)
+		fixContents(input_file=txt_file,out_name=None,del_intermediates=True,file_type=current_file_type,shouldEditAccessionCodes=mustEditAccessionCodes,shouldRemoveComments=mustRemoveComments,shouldMakeNanoPUZZLESspecificChanges=mustMakeNanoPUZZLESspecificChanges)
 		
 
-def createFlatTxtArchive(xls_folder,mustEditAccessionCodes,mustRemoveComments):
+def createFlatTxtArchive(xls_folder,mustEditAccessionCodes,mustRemoveComments,mustMakeNanoPUZZLESspecificChanges):
 	
 	flat_txt_archive = xls_folder+"-txt.zip"
 	
@@ -166,6 +168,8 @@ def createFlatTxtArchive(xls_folder,mustEditAccessionCodes,mustRemoveComments):
 		flat_txt_archive = re.sub('(\.zip$)','_opt-a.zip',flat_txt_archive)
 	if mustRemoveComments:
 		flat_txt_archive = re.sub('(\.zip$)','_opt-c.zip',flat_txt_archive)
+	if mustMakeNanoPUZZLESspecificChanges:
+		flat_txt_archive = re.sub('(\.zip$)','_opt-N.zip',flat_txt_archive)
 	###########
 	
 	cwd = os.getcwd()
@@ -201,13 +205,14 @@ def main():
 	#**********************
 	mustEditAccessionCodes = False
 	mustRemoveComments = False
+	mustMakeNanoPUZZLESspecificChanges = False
 	#######################
 	
 	print '-'*50
 	
 	try:
 		#############
-		opts,args = getopt.getopt(sys.argv[1:],'cai:',['mustRemoveComments=True','mustEditAccessionCodes=True','input='])
+		opts,args = getopt.getopt(sys.argv[1:],'Ncai:',['mustMakeNanoPUZZLESspecificChanges=True','mustRemoveComments=True','mustEditAccessionCodes=True','input='])
 		for o,v in opts:
 			if '-i' == o:
 				xls_archive = r'%s' % re.sub('"','',v)
@@ -215,6 +220,8 @@ def main():
 				mustEditAccessionCodes = True
 			if '-c' == o:
 				mustRemoveComments = True
+			if '-N' == o:
+				mustMakeNanoPUZZLESspecificChanges = True
 		del o,v,opts,args
 		#############
 	except Exception:
@@ -225,9 +232,9 @@ def main():
 	
 	xls_folder = extractXlsFolder(xls_archive)
 	
-	createAllTxt(xls_folder,mustEditAccessionCodes,mustRemoveComments)
+	createAllTxt(xls_folder,mustEditAccessionCodes,mustRemoveComments,mustMakeNanoPUZZLESspecificChanges)
 	
-	createFlatTxtArchive(xls_folder,mustEditAccessionCodes,mustRemoveComments)
+	createFlatTxtArchive(xls_folder,mustEditAccessionCodes,mustRemoveComments,mustMakeNanoPUZZLESspecificChanges)
 	
 	cleanUp([xls_folder])
 	

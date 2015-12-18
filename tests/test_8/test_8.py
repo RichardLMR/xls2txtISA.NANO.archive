@@ -58,11 +58,15 @@ import unittest
 #************************
 sys.path.append(r'%s%stests%stest_1' % (project_modules_to_test_dir,delimiter(),delimiter()))
 from test_1 import test_1
-
+import subprocess
 
 class test_8(test_1):
+	def runCmdToInspectPrintedMsgs(self,cmd):
+		#N.B. - see http://stackoverflow.com/questions/2502833/store-output-of-subprocess-popen-call-in-a-string
+		output,errors = subprocess.Popen(cmd,stdout=subprocess.PIPE).communicate()
+		return output
 	
-	def test_AtLeastOneInvestigationStudyAssayMaterialRequired_defaultOptions(self):
+	def test_checkDuplicatedColumnTitlesAreNotSuspicious_defaultOptions(self):
 		##############################
 		print 'Running unittests for this project: ', project_name
 		print 'Running this unittest: ', self._testMethodName
@@ -80,10 +84,10 @@ class test_8(test_1):
 			
 			if not input in problem_inputs:
 				assert input in non_problem_inputs,"input=%s???" % input
-				assert 0 == os.system(cmd)
+				assert not 'WARNING: suspicious duplicates' in self.runCmdToInspectPrintedMsgs(cmd)
 			else:
 				assert input in problem_inputs,"input=%s???" % input
-				assert not 0 == os.system(cmd)
+				assert 'WARNING: suspicious duplicates' in self.runCmdToInspectPrintedMsgs(cmd)
 			del cmd
 		del input
 		

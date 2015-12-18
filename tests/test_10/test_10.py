@@ -101,21 +101,18 @@ class test_10_for_checking_specific_fixTxtContents_functions(test_1):
 		assert [] == fixTxtContents.findDuplicates(['x','y','z'])
 		assert ['y'] == fixTxtContents.findDuplicates(['x','y','z','y'])
 	
-	def test_fixTxtContents_checkDuplicatedColumnTitlesAreAllowed_function(self):
+	def test_fixTxtContents_checkDuplicatedColumnTitlesAreNotSuspicious_function(self):
 		##############################
 		print 'Running unittests for this project: ', project_name
 		print 'Running this unittest: ', self._testMethodName
 		##############################
 		
-		fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','y','z'],allowed_dup_cts=['z'])
+		assert not re.match('(WARNING)',fixTxtContents.checkDuplicatedColumnTitlesAreNotSuspicious(['x','y','z'],ok_dup_cts=['z']))
 		
-		fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','z'],allowed_dup_cts=['z'])
+		assert not re.match('(WARNING)',fixTxtContents.checkDuplicatedColumnTitlesAreNotSuspicious(['x','z','y','z'],ok_dup_cts=['z']))
 		
-		try:
-			fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','y','z'],allowed_dup_cts=['z'])
-			assert 1 == 2,"fixTxtContents.checkDuplicatedColumnTitlesAreAllowed should have failed:fixTxtContents.checkDuplicatedColumnTitlesAreAllowed(['x','z','y','y','z'],allowed_dup_cts=['z'])"
-		except AssertionError:
-			pass
+		assert "WARNING: suspicious duplicates:['y']" == fixTxtContents.checkDuplicatedColumnTitlesAreNotSuspicious(['x','z','y','y','z'],ok_dup_cts=['z'])
+
 	
 	def test_fixTxtContents_modifyColTitleOrContentItem_function(self):
 		##############################

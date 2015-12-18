@@ -1,0 +1,179 @@
+ONTOLOGY SOURCE REFERENCE																															
+Term Source Name	NCIT	SIO	UO	MEDDRA	NPO	CHEMINF	OBI	CHEBI	EFO	CCONT	BTO	BAO	JERM	CHMO	BCTEO	HUPSON	SBO	STATO	TEDDY												
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/SIO	http://data.bioontology.org/ontologies/UO	http://purl.bioontology.org/ontology/MEDDRA	http://data.bioontology.org/ontologies/NPO	http://data.bioontology.org/ontologies/CHEMINF	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CCONT	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/JERM	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/BCTEO	http://data.bioontology.org/ontologies/HUPSON	http://data.bioontology.org/ontologies/SBO	http://data.bioontology.org/ontologies/STATO	http://data.bioontology.org/ontologies/TEDDY												
+Term Source Version	24.0	43.0	42.0	2013AA	31.0	29.0	21.0	79.0	119.0	2.0	22.0	19.0	14.0	5.0	3.0	1.0	189.0	10.0	11.0												
+Term Source Description	National Cancer Institute Thesaurus	Semanticscience Integrated Ontology	Units of Measurement Ontology	Medical Dictionary for Regulatory Activities	NanoParticle Ontology	Chemical Information Ontology	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology	Cell Culture Ontology	BRENDA Tissue and Enzyme Source Ontology	BioAssay Ontology	SysMO JERM Ontology of Systems Biology for Micro-Organisms	Chemical Methods Ontology	Bone and Cartilage Tissue Engineering Ontology	Human Physiology Simulation Ontology	Systems Biology Ontology	Statistics Ontology	Terminology for the Description of Dynamics												
+INVESTIGATION																															
+Investigation Identifier	TOY.test_17																														
+Investigation Title	TOY.test_17																														
+Investigation Description																															
+Investigation Submission Date																															
+Investigation Public Release Date																															
+Investigation Disease																															
+Investigation Disease Term Accession Number																															
+Investigation Disease Term Source REF																															
+Investigation Outcome																															
+Comment [GLP]	1																														
+INVESTIGATION PUBLICATIONS																															
+Investigation PubMed ID																															
+Investigation Publication DOI	10.000.madeup/test_17																														
+Investigation Publication Author List																															
+Investigation Publication Title	made up publication																														
+Investigation Publication Status																															
+Investigation Publication Status Term Accession Number																															
+Investigation Publication Status Term Source REF																															
+Comment [Publication Roles]																															
+Comment [URL]	http://www.IAMMADEUP.org.uk																														
+INVESTIGATION CONTACTS																															
+Investigation Person Last Name	Marchese Robinson																														
+Investigation Person First Name	Richard																														
+Investigation Person Mid Initials	L																														
+Investigation Person Email	R.L.MarcheseRobinson@ljmu.ac.uk																														
+Investigation Person Phone																															
+Investigation Person Fax																															
+Investigation Person Address																															
+Investigation Person Affiliation	NanoPUZZLES project;LJMU																														
+Investigation Person Roles	literature curation																														
+Investigation Person Roles Term Accession Number	http://semanticscience.org/resource/SIO_000998																														
+Investigation Person Roles Term Source REF	SIO																														
+Comment [Investigation statistics]																															
+Comment [Statistic name]	z-average	minimum	maximum	mean	standard deviation	median	mean of the number distribution	standard deviation of the number distribution	median of the volume distribution																						
+Comment [Statistic name Term Accession Number]	http://purl.bioontology.org/ontology/npo#NPO_1916	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25570	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25564	http://purl.bioontology.org/ontology/npo#NPO_1800	http://purl.bioontology.org/ontology/npo#NPO_1804	http://purl.bioontology.org/ontology/npo#NPO_1801																									
+Comment [Statistic name Term Source REF]	NPO	NCIT	NCIT	NPO	NPO	NPO																									
+MATERIAL																															
+Material File Name	m_TiO2_TOY.test_17.txt	m_ZnO_TOY.test_17.txt																													
+Material Source Name	TiO2_TOY.test_17	ZnO_TOY.test_17																													
+STUDY																															
+Study Identifier	TOY.test_17_PC																														
+Study Title	Physicochemical/structural characterisation of nanomaterials corresponding to this Investigation:TOY.test_17																														
+Study Description																															
+Study Submission Date																															
+Study Public Release Date																															
+Study Disease																															
+Study Disease Term Accession Number																															
+Study Disease Term Source REF																															
+Study Outcome																															
+Study File Name	s_TOY.test_17_PC.txt																														
+STUDY DESIGN DESCRIPTORS																															
+Study Design Type	physicochemical characterization																														
+Study Design Type Term Accession Number	http://purl.bioontology.org/ontology/npo#NPO_1356																														
+Study Design Type Term Source REF	NPO																														
+STUDY PUBLICATIONS																															
+Study PubMed ID																															
+Study Publication DOI																															
+Study Publication Author List																															
+Study Publication Title																															
+Study Publication Status																															
+Study Publication Status Term Accession Number																															
+Study Publication Status Term Source REF																															
+STUDY FACTORS																															
+Study Factor Name	physical state	particle concentration	medium	blood serum	blood serum concentration	blood serum heat treatment	blood serum organism	medium Exposure Duration	pH value	Sonication Strength	Sonication Duration	Stirring	vortex shaking	temperature value	dispersant aid	dispersant aid concentration	Sonication	physical state (assay preparation)	light source	artificial light wavelength classification	artificial light wavelength	probe	probe concentration prior to adsorption								
+Study Factor Type	physical state	particle concentration	medium	blood serum	concentration		organism	Exposure Duration	pH value		Duration		vortex shaking	temperature value		concentration	Sonication	physical state	light		wavelength	probe	concentration								
+Study Factor Type Term Accession Number	http://purl.bioontology.org/ontology/npo#NPO_888	http://purl.bioontology.org/ontology/npo#NPO_1830	http://purl.bioontology.org/ontology/npo#NPO_1853	http://purl.obolibrary.org/obo/BTO_0000133	http://purl.bioontology.org/ontology/npo#NPO_1167		http://purl.obolibrary.org/obo/OBI_0100026	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C83280	http://purl.bioontology.org/ontology/npo#NPO_1814		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25330		http://purl.bioontology.org/ontology/npo#NPO_1952	http://purl.bioontology.org/ontology/npo#NPO_1806		http://purl.bioontology.org/ontology/npo#NPO_1167	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C81871	http://purl.bioontology.org/ontology/npo#NPO_888	http://www.ebi.ac.uk/efo/EFO_0000568		http://www.bioassayontology.org/bao#BAO_0000565	http://purl.obolibrary.org/obo/CHEBI_50406	http://purl.bioontology.org/ontology/npo#NPO_1167								
+Study Factor Type Term Source REF	NPO	NPO	NPO	EFO	NPO		EFO	NCIT	NPO		NCIT		NPO	NPO		NPO	NCIT	NPO	EFO		BAO	CHEBI	NPO								
+STUDY ASSAYS																															
+Study Assay Measurement Type	size																														
+Study Assay Measurement Type Term Accession Number																															
+Study Assay Measurement Type Term Source REF																															
+Study Assay Technology Type	transmission electron microscopy																														
+Study Assay Technology Type Term Accession Number																															
+Study Assay Technology Type Term Source REF																															
+Study Assay Technology Platform																															
+Study Assay Measurement Name	size;diameter;length																														
+Study Assay Measurement Name Term Accession Number																															
+Study Assay Measurement Name Term Source REF																															
+Study Assay File Name	a_TOY.test_17_PC_size_TEM.txt																														
+STUDY PROTOCOLS																															
+Study Protocol Name	nanomaterial sample preparation for some physicochemical assay	size determination by TEM																													
+Study Protocol Type	sample preparation																														
+Study Protocol Type Term Accession Number	http://purl.bioontology.org/ontology/npo#NPO_1489																														
+Study Protocol Type Term Source REF	NPO																														
+Study Protocol Description																															
+Study Protocol URI																															
+Study Protocol Version																															
+Study Protocol Parameters Name																															
+Study Protocol Parameters Name Term Accession Number																															
+Study Protocol Parameters Name Term Source REF																															
+Study Protocol Components Name																															
+Study Protocol Components Type																															
+Study Protocol Components Type Term Accession Number																															
+Study Protocol Components Type Term Source REF																															
+STUDY CONTACTS																															
+Study Person Last Name																															
+Study Person First Name																															
+Study Person Mid Initials																															
+Study Person Email																															
+Study Person Phone																															
+Study Person Fax																															
+Study Person Address																															
+Study Person Affiliation																															
+Study Person Roles																															
+Study Person Roles Term Accession Number																															
+Study Person Roles Term Source REF																															
+STUDY																															
+Study Identifier	TOY.test_17_InVitro.CB																														
+Study Title	In Vitro (cell-based) characterisation of nanomaterials corresponding to this Investigation:<Investigation Identifier>																														
+Study Description																															
+Study Submission Date																															
+Study Public Release Date																															
+Study Disease																															
+Study Disease Term Accession Number																															
+Study Disease Term Source REF																															
+Study Outcome																															
+Study File Name	s_TOY.test_17_InVitro.CB.txt																														
+STUDY DESIGN DESCRIPTORS																															
+Study Design Type	in vitro characterization																														
+Study Design Type Term Accession Number	http://purl.bioontology.org/ontology/npo#NPO_1357																														
+Study Design Type Term Source REF	NPO																														
+STUDY PUBLICATIONS																															
+Study PubMed ID																															
+Study Publication DOI																															
+Study Publication Author List																															
+Study Publication Title																															
+Study Publication Status																															
+Study Publication Status Term Accession Number																															
+Study Publication Status Term Source REF																															
+STUDY FACTORS																															
+Study Factor Name	vehicle Exposure Duration	vehicle pH value	vehicle temperature value	vehicle volume	vehicle	vehicle serum concentration	vehicle serum heat treatment	vehicle serum organism	vehicle serum	cells Exposure Duration	dispersant aid concentration	dispersant aid	nanomaterial	screening concentration	Sonication Duration	Sonication Strength	Stirring	vortex shaking	initial cell density	final cell density	confluent	growth phase culture	Sonication	light source	artificial light wavelength classification	artificial light wavelength	culture medium	culture medium glucose supplement	dose per cell	dose	Cell Count
+Study Factor Type	Exposure Duration	pH value	temperature value	volume	vehicle role	concentration		organism		Exposure Duration	concentration		nanomaterial	screening concentration				vortex shaking	seed density			growth phase culture	Sonication	light		wavelength	culture medium			dose	Cell Count
+Study Factor Type Term Accession Number	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C83280	http://purl.bioontology.org/ontology/npo#NPO_1814	http://purl.bioontology.org/ontology/npo#NPO_1806	http://purl.org/obo/owl/PATO#PATO_0000918	http://www.ebi.ac.uk/efo/EFO_0000732	http://purl.bioontology.org/ontology/npo#NPO_1167		http://purl.obolibrary.org/obo/OBI_0100026		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C83280	http://purl.bioontology.org/ontology/npo#NPO_1167		http://purl.bioontology.org/ontology/npo#NPO_199	http://www.bioassayontology.org/bao#BAO_0000098				http://purl.bioontology.org/ontology/npo#NPO_1952	http://livercancer.imbi.uni-heidelberg.de/ccont#CCONT_0000079			http://purl.obolibrary.org/obo/BTO_0001900	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C81871	http://www.ebi.ac.uk/efo/EFO_0000568		http://www.bioassayontology.org/bao#BAO_0000565	http://www.bioassayontology.org/bao#BAO_0000114			http://www.ebi.ac.uk/efo/EFO_0000428	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C48938
+Study Factor Type Term Source REF	NCIT	NPO	NPO	NPO	EFO	NPO		EFO		NCIT	NPO		NPO	BAO				NPO	CCONT			BTO	NCIT	EFO		BAO	BAO			EFO	NCIT
+STUDY ASSAYS																															
+Study Assay Measurement Type	cytotoxicity	cytotoxicity																													
+Study Assay Measurement Type Term Accession Number																															
+Study Assay Measurement Type Term Source REF																															
+Study Assay Technology Type	MTS assay	MTT assay																													
+Study Assay Technology Type Term Accession Number																															
+Study Assay Technology Type Term Source REF																															
+Study Assay Technology Platform																															
+Study Assay Measurement Name	percent cytotoxicity;LC50;LD50;LOAEL	percent cytotoxicity;LC50;LD50;LOAEL																													
+Study Assay Measurement Name Term Accession Number																															
+Study Assay Measurement Name Term Source REF																															
+Study Assay File Name	a_TOY.test_17_cytotoxicity.cell-viability_MTS.txt	a_TOY.test_17_cytotoxicity.cell-viability_MTT.txt																													
+STUDY PROTOCOLS																															
+Study Protocol Name	nanomaterial sample component preparation for some cell based in vitro assay	biological sample component preparation for some cell based in vitro assay	cell viability by MTS assay	cell viability by MTT assay																											
+Study Protocol Type	sample preparation	sample preparation	cell viability assay	cell viability assay																											
+Study Protocol Type Term Accession Number	http://purl.bioontology.org/ontology/npo#NPO_1489	http://purl.bioontology.org/ontology/npo#NPO_1489	http://www.bioassayontology.org/bao#BAO_0003009	http://www.bioassayontology.org/bao#BAO_0003009																											
+Study Protocol Type Term Source REF	NPO	NPO	BAO	BAO																											
+Study Protocol Description																															
+Study Protocol URI																															
+Study Protocol Version																															
+Study Protocol Parameters Name																															
+Study Protocol Parameters Name Term Accession Number																															
+Study Protocol Parameters Name Term Source REF																															
+Study Protocol Components Name																															
+Study Protocol Components Type																															
+Study Protocol Components Type Term Accession Number																															
+Study Protocol Components Type Term Source REF																															
+STUDY CONTACTS																															
+Study Person Last Name																															
+Study Person First Name																															
+Study Person Mid Initials																															
+Study Person Email																															
+Study Person Phone																															
+Study Person Fax																															
+Study Person Address																															
+Study Person Affiliation																															
+Study Person Roles																															
+Study Person Roles Term Accession Number																															
+Study Person Roles Term Source REF																															

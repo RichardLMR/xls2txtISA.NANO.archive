@@ -1,0 +1,2 @@
+Sample Name	Comment [zeta potential:from graph]	Comment [isoelectric point:from graph]	Protocol REF	Parameter Value [Instrument]	Parameter Value [Instrument Version]	Parameter Value [instrument vendor]	Assay Name	Factor Value [physical state (assay preparation)]	Term Accession Number	Term Source REF	Measurement Value [mean(zeta potential)]	Unit	Term Accession Number	Term Source REF	Measurement Value [mean(isoelectric point)]
+s_TOY.test_18_PC_1	0		zeta potential determination by <Assay technology type>				zeta potential determination by <Assay technology type>				1.5				

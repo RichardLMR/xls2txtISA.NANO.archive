@@ -53,8 +53,8 @@ fileType2literalFileContents2Replace['Assay']['Term Source Ref'] = 'Term Source 
 fileType2literalFileContents2Replace['Material']['QS[inherent]'] = 'QS(inherent)' #12/02/2015: quality score fields under revision within NanoPUZZLES; these columns are not included in the current,publicly released versions of the templates
 fileType2literalFileContents2Replace['Investigation']['Study Assay Measurement Term'] = 'Study Assay Measurement Type Term'
 #*******************
-allowed_duplicated_column_titles = ['Protocol REF','Term Accession Number','Term Source Ref','Term Source REF','Unit','Sample Name'] #should both 'Term Source Ref' and 'Term Source REF' be included? #see below!
-allowed_duplicated_column_titles += ['"%s"' % title for title in allowed_duplicated_column_titles]
+non_suspicious_duplicated_column_titles = ['Protocol REF','Term Accession Number','Term Source Ref','Term Source REF','Unit','Sample Name'] #06/12/15: actually, column titles such as Characteristics [...] and, maybe, Factors might be duplicated under certain circumstances e.g. a "Characteristics [cell type]" associated with a "Source Name" column and another "Characteristics [cell type] associated with the corresponding "Sample Name" on account of differentiation of the originally received cells => checkDuplicatedColumnTitlesAreAllowed(...) was updated and renamed
+non_suspicious_duplicated_column_titles += ['"%s"' % title for title in non_suspicious_duplicated_column_titles]
 del title
 duplicate_marker = '_duplicate_'
 #####################################
@@ -73,17 +73,68 @@ def findDuplicates(some_list):
 	
 	return duplicates
 
-def checkDuplicatedColumnTitlesAreAllowed(column_titles,allowed_dup_cts=allowed_duplicated_column_titles):
-	
+#def checkDuplicatedColumnTitlesAreAllowed(column_titles,allowed_dup_cts=non_suspicious_duplicated_column_titles):
+#06/12/15: actually, column titles such as Characteristics [...] and, maybe, Factors might be duplicated under certain circumstances e.g. a "Characteristics [cell type]" associated with a "Source Name" column and another "Characteristics [cell type] associated with the corresponding "Sample Name" on account of differentiation of the originally received cells => checkDuplicatedColumnTitlesAreAllowed(...) was updated and renamed
+def checkDuplicatedColumnTitlesAreNotSuspicious(column_titles,ok_dup_cts=non_suspicious_duplicated_column_titles):
 	duplicated_column_titles = findDuplicates(column_titles)
 	
+	ret_val = ''
+	
 	if not 0 == len(duplicated_column_titles):
-		forbidden_duplicates = [ct for ct in duplicated_column_titles if not ct in allowed_dup_cts]
+		suspicious_duplicates = [ct for ct in duplicated_column_titles if not ct in ok_dup_cts]
 		del ct
-		assert 0 == len(forbidden_duplicates), "Forbidden duplicates:%s" % str(forbidden_duplicates)
-		del forbidden_duplicates
+		if not 0 == len(suspicious_duplicates):
+			ret_val =  "WARNING: suspicious duplicates:%s" % str(suspicious_duplicates)
+		del suspicious_duplicates
+		
+	return ret_val
 
-def modifyColTitleOrContentItem(col_title_or_content_item):
+def makeNanoPUZZLESspecificChanges_dueToTemplateUpdates(col_title_or_content_item,current_file_type):
+	
+	#############################
+	#The following changes may be required due to iterative updating of the NanoPUZZLES ISA-TAB-Nano templates:
+	##############################
+	col_title_or_content_item = col_title_or_content_item.replace("Manufacturer supplied ",'')
+	
+	col_title_or_content_item = col_title_or_content_item.replace("nanoparticle sample","nanomaterial")
+	col_title_or_content_item = col_title_or_content_item.replace("http://purl.bioontology.org/ontology/npo#NPO_1404","http://purl.bioontology.org/ontology/npo#NPO_199")
+	
+	if 'UNKNOWN' == col_title_or_content_item:
+		col_title_or_content_item = ''
+	
+	if "Characteristics[shape]" == col_title_or_content_item:
+		col_title_or_content_item = "Characteristics [shape {NPO:http://purl.bioontology.org/ontology/npo#NPO_274}]"
+		assert 'Material' == current_file_type,"Characteristics[shape] in file of this type:%s" % current_file_type
+	
+	if "Measurement Value[zeta potential]" == col_title_or_content_item: 
+		col_title_or_content_item = "Measurement Value[mean(zeta potential)]"
+		assert 'Assay' == current_file_type,"Measurement Value[zeta potential] in file of this type:%s" % current_file_type
+	
+	return col_title_or_content_item
+
+def fixCommentsWithDots(col_title_or_content_item):#,current_file_type):
+	##################
+	#The following changes were specifically required for some NanoPUZZLES datasets because they were observed to throw errors upon trying to import into the nanoDMS system [http://biocenitc-deq.urv.cat/nanodms/, last accessed on 4th of June 2015] due to the restriction on "." characters in the headers of the Material, Study or Assay files being violated by comments columns such as "Comment[miscellaneous.5]" and "Comment[Miscellaneous.1]"
+	##################
+	
+	comments_with_dots_regex = re.compile('(Comment\s*\[miscellaneous\.)',re.IGNORECASE)
+	
+	col_title_or_content_item = comments_with_dots_regex.sub("Comment [miscellaneous_",col_title_or_content_item)
+	
+	return col_title_or_content_item
+
+def makeNanoPUZZLESspecificChanges(col_title_or_content_item,current_file_type):
+	
+	col_title_or_content_item = makeNanoPUZZLESspecificChanges_dueToTemplateUpdates(col_title_or_content_item,current_file_type)
+	
+	return col_title_or_content_item
+
+def modifyColTitleOrContentItem(col_title_or_content_item,current_file_type=None,includingNanoPUZZLESspecificChanges=False):
+	
+	if includingNanoPUZZLESspecificChanges:
+		col_title_or_content_item = makeNanoPUZZLESspecificChanges(col_title_or_content_item,current_file_type)
+	
+	col_title_or_content_item = fixCommentsWithDots(col_title_or_content_item)#,current_file_type)
 	
 	col_title_or_content_item = re.sub('(\r|\n)','',col_title_or_content_item)
 	
@@ -165,7 +216,7 @@ def rowHasBlankFirstEntry(row):
 	else:
 		return False
 
-def fixContents_step2(intermediate_1,out_name,file_type):
+def fixContents_step2(intermediate_1,out_name,file_type,shouldMakeNanoPUZZLESspecificChanges):
 	
 	f_out = open(out_name,'wb')
 	try:
@@ -179,9 +230,9 @@ def fixContents_step2(intermediate_1,out_name,file_type):
 			#================
 			#================
 			if 1 == row_count and not 'Investigation'==file_type:
-				checkDuplicatedColumnTitlesAreAllowed(column_titles=row)
+				print checkDuplicatedColumnTitlesAreNotSuspicious(column_titles=row)
 			#================
-			f_out.write('\t'.join([modifyColTitleOrContentItem(part) for part in row])+'\n')
+			f_out.write('\t'.join([modifyColTitleOrContentItem(part,current_file_type=file_type,includingNanoPUZZLESspecificChanges=shouldMakeNanoPUZZLESspecificChanges) for part in row])+'\n')
 	finally:
 		f_out.close()
 		del f_out
@@ -194,11 +245,11 @@ def extractAccessionCode(text_with_at_most_one_accession_code):
 		############
 		#Debug:
 		############
-		print "DEBUGGING:text_with_at_most_one_accession_code=%s;almost_ac_regex.split(text_with_at_most_one_accession_code)=" % text_with_at_most_one_accession_code,almost_ac_regex.split(text_with_at_most_one_accession_code)
+		#print "DEBUGGING:text_with_at_most_one_accession_code=%s;almost_ac_regex.split(text_with_at_most_one_accession_code)=" % text_with_at_most_one_accession_code,almost_ac_regex.split(text_with_at_most_one_accession_code)
 		############
 		
 		
-		almost_ac_candidates = [p for p in almost_ac_regex.split(text_with_at_most_one_accession_code) if not p is None and re.match('(http)',p)]
+		almost_ac_candidates = [p for p in almost_ac_regex.split(text_with_at_most_one_accession_code) if not p is None and almost_ac_regex.match(p)]
 		del p
 		assert 1 == len(almost_ac_candidates),"text_with_at_most_one_accession_code=%s;almost_ac_candidates=%s" % (text_with_at_most_one_accession_code,str(almost_ac_candidates))
 		
@@ -275,13 +326,14 @@ def removeComments(out_name,file_type):
 		f_out.close()
 		del f_out
 
-def fixContents(input_file,out_name=None,del_intermediates=True,file_type='Assay',shouldEditAccessionCodes=False,shouldRemoveComments=False):
+def fixContents(input_file,out_name=None,del_intermediates=True,file_type='Assay',shouldEditAccessionCodes=False,shouldRemoveComments=False,shouldMakeNanoPUZZLESspecificChanges=False):
 	
 	print '-'*50
 	print 'Applying fixContents(...) to:',input_file
 	print 'Current file type:',file_type
 	print 'shouldEditAccessionCodes=%s' % str(shouldEditAccessionCodes)
 	print 'shouldRemoveComments=%s' % str(shouldRemoveComments)
+	print 'shouldMakeNanoPUZZLESspecificChanges=%s' % str(shouldMakeNanoPUZZLESspecificChanges)
 	print '-'*50
 	
 	#################
@@ -295,7 +347,7 @@ def fixContents(input_file,out_name=None,del_intermediates=True,file_type='Assay
 	
 	all_intermediates.append(intermediate_1)
 		
-	fixContents_step2(intermediate_1,out_name,file_type)
+	fixContents_step2(intermediate_1,out_name,file_type,shouldMakeNanoPUZZLESspecificChanges)
 	
 		
 	if del_intermediates: #DEBUG:commented
